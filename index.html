@@ -235,7 +235,36 @@
  </div>
     
 
+ <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyhDwEl2snxRGVPa9NqjBFnO0IM06WGGGtHxbQ_mobVGNUZB0qkDCKF3nV4Gd3H9MJETA/exec';
+    const form = document.forms['submit-to-google-sheet'];
+    const submitButton = document.querySelector('button[type="submit"]');
+    const msgElement = document.getElementById('msg');
 
-    <script src="main.js"></script>
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        submitButton.textContent = 'Submitting...'; // Change button text
+        submitButton.disabled = true; // Disable button to prevent multiple submissions
+
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+            .then(response => {
+                console.log('Success!', response);
+                msgElement.textContent = 'Form submitted successfully!';
+                form.reset(); // Clear form fields
+                submitButton.textContent = 'Submit'; // Reset button text
+                submitButton.disabled = false; // Re-enable button
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                msgElement.textContent = 'There was an error. Please try again.';
+                submitButton.textContent = 'Submit'; // Reset button text
+                submitButton.disabled = false; // Re-enable button
+            });
+    });
+</script>
+
+
+
+    <!-- <script src="main.js"></script> -->
 </body>
 </html>
