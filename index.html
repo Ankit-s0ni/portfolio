@@ -226,7 +226,22 @@
                     <button type="submit" class="btn btn1">Submit</button>
                 </form>
                 <span id="msg"></span>
-            </div>  
+            </div> 
+            <div class="chat-bot-container">
+                <button class="chat-bot-toggle" onclick="toggleChat()">💬 Chat</button>
+                <div class="chat-bot" id="chatBot">
+                    <div class="chat-header">
+                        <span>Chat with Us</span>
+                        <button class="close-btn" onclick="toggleChat()">✖</button>
+                    </div>
+                    <iframe 
+                        src="https://cdn.botpress.cloud/webchat/v2.2/shareable.html?configUrl=https://files.bpcontent.cloud/2025/02/18/09/20250218090604-TM73RDJP.json" 
+                        frameborder="0">
+                    </iframe>
+                </div>
+            </div>
+            
+            
         </div>
     </div>
     <div class="copyright">
@@ -236,6 +251,16 @@
     
 
  <script>
+
+    function toggleChat() {
+        var chatBox = document.getElementById("chatBot");
+        if (chatBox.style.display === "none" || chatBox.style.display === "") {
+            chatBox.style.display = "flex"; // Show chatbot
+        } else {
+            chatBox.style.display = "none"; // Hide chatbot
+        }
+    }
+    
     const scriptURL = 'https://script.google.com/macros/s/AKfycbyhDwEl2snxRGVPa9NqjBFnO0IM06WGGGtHxbQ_mobVGNUZB0qkDCKF3nV4Gd3H9MJETA/exec';
     const form = document.forms['submit-to-google-sheet'];
     const submitButton = document.querySelector('button[type="submit"]');
@@ -259,7 +284,7 @@
                 msgElement.textContent = 'There was an error. Please try again.';
                 submitButton.textContent = 'Submit'; // Reset button text
                 submitButton.disabled = false; // Re-enable button
-            });
+            });       
     });
 </script>
 

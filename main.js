@@ -28,3 +28,12 @@ form.addEventListener('submit', e => {
             msg.innerHTML = "An error occurred. Please try again.";
         });
 });
+
+function toggleChat() {
+    var chatBox = document.getElementById("chatBot");
+    if (chatBox.style.display === "none" || chatBox.style.display === "") {
+        chatBox.style.display = "flex"; // Show chatbot
+    } else {
+        chatBox.style.display = "none"; // Hide chatbot
+    }
+}
